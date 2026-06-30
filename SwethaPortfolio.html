@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Swetha — E-Portfolio</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<!--
+  HOW TO EDIT THIS PORTFOLIO
+  ==========================
+  1. CHANGE NAME: Search for "Swetha" and replace with the full name wherever it appears.
+  2. CHANGE PHOTOS: Every image uses a placeholder like:
+        <img src="https://placehold.co/600x400?text=Add+Photo" ...>
+     Just replace the src="..." with the real photo file name or link, e.g.
+        <img src="images/seminar1.jpg" ...>
+     If using local photos, put them in a folder called "images" next to this file.
+  3. CHANGE TEXT: Each activity has a caption (bold line) and a description (paragraph)
+     right under each photo. Just type over the existing text.
+  4. ADD/REMOVE ACTIVITIES: Copy an entire <div class="activity">...</div> block
+     and paste it to add a new one, or delete a block to remove one.
+  5. SIDEBAR MENU: The left menu links automatically jump to each section because
+     they share the same id (e.g. href="#sem1" links to <section id="sem1">).
+     If you rename a section's id, update the matching href too.
+-->
+
+<style>
+  :root{
+    --primary:#4a6fa5;
+    --primary-dark:#33507a;
+    --accent:#e8a33d;
+    --bg:#f7f7f5;
+    --card:#ffffff;
+    --text:#2b2b2b;
+    --muted:#6b6b6b;
+    --border:#e3e1dc;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'Segoe UI',Arial,sans-serif;
+    background:var(--bg);
+    color:var(--text);
+    line-height:1.6;
+  }
+  header.hero{
+    background:linear-gradient(135deg,var(--primary-dark),var(--primary));
+    color:#fff;
+    padding:48px 24px 36px;
+    text-align:center;
+  }
+  header.hero h1{
+    margin:0 0 6px;
+    font-size:2.2rem;
+    letter-spacing:.5px;
+  }
+  header.hero p{
+    margin:0;
+    font-size:1.05rem;
+    opacity:.9;
+  }
+  .layout{
+    display:flex;
+    max-width:1200px;
+    margin:0 auto;
+    align-items:flex-start;
+  }
+  nav.sidebar{
+    width:270px;
+    flex-shrink:0;
+    background:var(--card);
+    border-right:1px solid var(--border);
+    height:100vh;
+    overflow-y:auto;
+    position:sticky;
+    top:0;
+    padding:20px 0;
+  }
+  nav.sidebar a{
+    display:block;
+    padding:8px 22px;
+    color:var(--text);
+    text-decoration:none;
+    font-size:.92rem;
+    border-left:3px solid transparent;
+  }
+  nav.sidebar a:hover{
+    background:#f0f3f8;
+    border-left-color:var(--accent);
+    color:var(--primary-dark);
+  }
+  nav.sidebar .top-level{
+    font-weight:700;
+    margin-top:10px;
+    color:var(--primary-dark);
+  }
+  nav.sidebar .sub-level{
+    padding-left:36px;
+    font-weight:600;
+  }
+  nav.sidebar .sub-sub-level{
+    padding-left:50px;
+    color:var(--muted);
+  }
+  main{
+    flex:1;
+    padding:36px 40px 80px;
+    max-width:900px;
+  }
+  section{
+    margin-bottom:56px;
+    scroll-margin-top:20px;
+  }
+  h2.section-title{
+    font-size:1.7rem;
+    color:var(--primary-dark);
+    border-bottom:3px solid var(--accent);
+    padding-bottom:8px;
+    margin-bottom:18px;
+  }
+  h3.subsection-title{
+    font-size:1.25rem;
+    color:var(--primary);
+    margin:30px 0 14px;
+  }
+  h4.activity-title{
+    font-size:1.05rem;
+    color:var(--primary-dark);
+    margin:24px 0 10px;
+  }
+  .about-card{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:12px;
+    padding:26px 28px;
+    box-shadow:0 2px 8px rgba(0,0,0,.04);
+  }
+  .activity{
+    background:var(--card);
+    border:1px solid var(--border);
+    border-radius:10px;
+    padding:18px 20px 20px;
+    margin-bottom:22px;
+    box-shadow:0 1px 4px rgba(0,0,0,.03);
+  }
+  .activity img{
+    max-width:100%;
+    border-radius:8px;
+    display:block;
+    margin-bottom:12px;
+  }
+  .img-row{
+    display:flex;
+    gap:10px;
+    flex-wrap:wrap;
+    margin-bottom:12px;
+  }
+  .img-row img{
+    flex:1 1 200px;
+    max-width:280px;
+    margin-bottom:0;
+  }
+  .caption{
+    font-weight:700;
+    margin:6px 0 4px;
+    color:var(--primary-dark);
+  }
+  .description{
+    margin:0;
+    color:var(--text);
+  }
+  .profile-photo{
+    width:160px;
+    height:160px;
+    border-radius:50%;
+    object-fit:cover;
+    border:4px solid var(--accent);
+    display:block;
+    margin:0 auto 20px;
+  }
+  footer{
+    text-align:center;
+    padding:24px;
+    color:var(--muted);
+    font-size:.85rem;
+  }
+  @media (max-width:850px){
+    nav.sidebar{display:none;}
+    main{padding:24px;}
+  }
+</style>
+</head>
+<body>
+
+<header class="hero">
+  <h1>Navitha Gutpalli</h1>
+  <!-- EDIT: replace tagline below -->
+  <p>E-Portfolio · Bachelor's Degree (2024 - 2026)</p>
+</header>
+
+<div class="layout">
+
+  <!-- ============ SIDEBAR NAVIGATION ============ -->
+  <nav class="sidebar">
+    <a class="top-level" href="#about">About Me</a>
+    <a class="top-level" href="#degree">Bachelor's Degree</a>
+
+    <a class="sub-level" href="#sem1">1. Semester I</a>
+    <a class="sub-sub-level" href="#sem1-curriculum">1.1 Curriculum</a>
+    <a class="sub-sub-level" href="#sem1-cocurricular">1.2 Co-curricular Activities</a>
+
+    <a class="sub-level" href="#sem2">2. Semester II</a>
+    <a class="sub-sub-level" href="#sem2-curriculum">2.1 Curriculum</a>
+    <a class="sub-sub-level" href="#sem2-cocurricular">2.2 Co-curricular Activities</a>
+
+    <a class="sub-level" href="#sem3">3. Semester III</a>
+    <a class="sub-sub-level" href="#sem3-curriculum">3.1 Curriculum</a>
+    <a class="sub-sub-level" href="#sem3-cocurricular">3.2 Co-curricular Activities</a>
+
+    <a class="sub-level" href="#sem4">4. Semester IV</a>
+    <a class="sub-sub-level" href="#sem4-curriculum">4.1 Curriculum</a>
+    <a class="sub-sub-level" href="#sem4-cocurricular">4.2 Co-curricular Activities</a>
+  </nav>
+
+  <!-- ============ MAIN CONTENT ============ -->
+  <main>
+
+    <!-- ===================== ABOUT ME ===================== -->
+    <section id="about">
+      <h2 class="section-title">About Me</h2>
+      <div class="about-card">
+        <img class="profile-photo" src="https://placehold.co/300x300?text=Profile+Photo" alt="Profile photo">
+        <!-- EDIT: replace the paragraph below with Swetha's own bio -->
+        <p class="description">
+          I am a passionate and dedicated educator with a strong academic background in Zoology and a deep interest in teaching and learning. With qualifications in TET and SET, I strive to create meaningful and engaging learning experiences for students. I believe in fostering curiosity, critical thinking, and a supportive classroom environment that encourages holistic development. This e-portfolio reflects my journey, skills, and commitment to excellence in education. 
+        </p>
+      </div>
+    </section>
+
+    <!-- ===================== DEGREE TITLE ===================== -->
+    <section id="degree">
+      <h2 class="section-title">Bachelor's Degree (2024 – 2026)</h2>
+    </section>
+
+    <!-- ===================== SEMESTER 1 ===================== -->
+    <section id="sem1">
+      <h2 class="section-title">1. Semester I</h2>
+
+      <h3 id="sem1-curriculum" class="subsection-title">1.1 Curriculum</h3>
+
+      <h4 class="activity-title">1.1.1 Seminars</h4>
+      <div class="activity">
+        <div class="img-row">
+          <img src="https://placehold.co/280x200?text=Seminar+Photo+1" alt="Seminar photo">
+          <img src="https://placehold.co/280x200?text=Seminar+Photo+2" alt="Seminar photo">
+          <img src="https://placehold.co/280x200?text=Seminar+Photo+3" alt="Seminar photo">
+        </div>
+        <p class="caption">[EDIT: e.g. Philosophical Foundations of Education seminar]</p>
+        <p class="description">[EDIT: 1–2 lines about this seminar and what you learned.]</p>
+      </div>
+
+      <h4 class="activity-title">1.1.2 Field Engagement</h4>
+      <div class="activity">
+        <img src="https://placehold.co/600x350?text=Field+Engagement+Photo" alt="Field engagement photo">
+        <p class="caption">[EDIT: activity title]</p>
+        <p class="description">[EDIT: describe the field engagement / survey you conducted and what it taught you.]</p>
+      </div>
+
+      <h4 class="activity-title">1.1.3 Peer Teaching</h4>
+      <div class="activity">
+        <img src="images/teulugu-peer-teaching-3.jpg" alt="Peer teaching photo">">
+        <p class="caption">Peer Teaching Experience</p>
+        <p class="description">During my peer teaching sessions in telugu, I had the opportunity to enhance my instructional skills and classroom communication. It was a valuable experience that helped me improve my teaching approach. </p>
+      </div>
+
+      <h4 class="activity-title">1.1.4 Communication Skills in English Activities</h4>
+      <div class="activity">
+        <div class="img-row">
+          <img src="https://placehold.co/280x200?text=Activity+Photo+1" alt="activity photo">
+          <img src="https://placehold.co/280x200?text=Activity+Photo+2" alt="activity photo">
+        </div>
+        <p class="caption">[EDIT: e.g. JAM activity / Role play / Self introduction]</p>
+        <p class="description">[EDIT: describe the activity and its impact on your communication skills.]</p>
+      </div>
+
+      <h4 class="activity-title">1.1.5 Yoga Practice</h4>
+      <div class="activity">
+        <img src="images/yoga-2.jpg" alt="Yoga practice photo">
+        <p class="caption">Yoga and Meditation Experience</p>
+        <p class="description">Participating in Yoga Day was a refreshing and relaxing experience. It helped me understand the importance of physical and mental well-being through simple yoga practices. The session made me feel calm, focused, and energized. </p>
+      </div>
+
+      <h4 class="activity-title">1.1.6 School Observation</h4>
+      <div class="activity">
+        <img src="images\stpeter-grammar-school-observation-4.jpg" alt="School observation photo">
+        <p class="description">Observing school classes for seven days was a valuable learning experience. It helped me understand effective classroom management, teaching techniques, and different instructional strategies used by teachers. I also learned how to handle student behavior and maintain a positive learning environment. </p>
+      </div>
+
+      <h3 id="sem1-cocurricular" class="subsection-title">1.2 Co-curricular Activities</h3>
+
+      <h4 class="activity-title">1.2.1 Alumni Meet</h4>
+      <div class="activity">
+        <img src="https://placehold.co/600x350?text=Alumni+Meet+Photo" alt="Alumni meet photo">
+        <p class="description">[EDIT: describe your experience attending the alumni meet.]</p>
+      </div>
+
+      <h4 class="activity-title">1.2.2 Skill Development Program</h4>
+      <div class="activity">
+        <img src="https://placehold.co/600x350?text=Skill+Program+Photo" alt="Skill development photo">
+        <p class="caption">[EDIT: program name]</p>
+        <p class="description">[EDIT: describe what you learned.]</p>
+      </div>
+
+      <h4 class="activity-title">1.2.3 Cultural Program</h4>
+      <div class="activity">
+        <img src="images\bathumakkama-1.jpg" alt="Cultural program photo">
+        <p class="description">Participating in the Bathukamma cultural program at my college was a joyful and memorable experience. Bathukamma, the traditional floral festival of Telangana, celebrates nature, culture, and the spirit of womanhood. Students came together dressed in traditional attire, arranged beautiful flower stacks, sang folk songs, and danced around the Bathukamma. The event promoted cultural awareness, unity, and respect for our rich heritage while creating a vibrant and festive atmosphere on campus.</p>
+      </div>
+
+      <h4 class="activity-title">1.2.4 Swachh Bharat</h4>
+      <div class="activity">
+        <img src="images\swach-bharat.jpg" alt="Swachh Bharat photo">
+        <p class="description">
+Participating in the Swachh Bharat activity at my college was a meaningful and responsible experience. It made me realize the importance of cleanliness and maintaining a healthy environment. Through the activity, I actively contributed to keeping the campus clean and developed a sense of civic responsibility. It also encouraged teamwork and awareness about hygiene among students. </p>
+      </div>
+
+      <h4 class="activity-title">1.2.5 Isha Foundation</h4>
+      <div class="activity">
+        <img src="https://placehold.co/600x350?text=Isha+Foundation+Photo" alt="Isha Foundation photo">
+        <p class="description">[EDIT: describe the meditation / Hatha Yoga session.]</p>
+      </div>
+
+      <h4 class="activity-title">1.2.6 Legal Awareness Camp</h4>
+      <div class="activity">
+        <img src="https://placehold.co/600x350?text=Legal+Awareness+Photo" alt="Legal awareness camp photo">
+        <p class="description">[EDIT: describe what you learned about legal rights and responsibilities.]</p>
+      </div>
+
+      <h4 class="activity-title">1.2.7 Freshers' Program</h4>
+      <div class="activity">
+        <div class="img-row">
+          <img src="https://placehold.co/280x200?text=Freshers+Photo+1" alt="freshers photo">
+          <img src="https://placehold.co/280x200?text=Freshers+Photo+2" alt="freshers photo">
+          <img src="https://placehold.co/280x200?text=Freshers+Photo+3" alt="freshers photo">
+        </div>
+        <p class="description">[EDIT: describe the freshers' program experience.]</p>
+      </div>
+
+      <h4 class="activity-title">1.2.8 Student Council Elections</h4>
+      <div class="activity">
+        <div class="img-row">
+          <img src="https://placehold.co/280x200?text=Council+Photo+1" alt="student council photo">
+          <img src="https://placehold.co/280x200?text=Council+Photo+2" alt="student council photo">
+        </div>
+        <p class="description">[EDIT: describe your role / experience in the student council elections.]</p>
+      </div>
+
+      <h4 class="activity-title">1.2.9 Maths / Subject Day</h4>
+      <div class="activity">
+        <img src="https://placehold.co/600x350?text=Subject+Day+Photo" alt="Subject day photo">
+        <p class="description">[EDIT: describe the quiz / activities you participated in.]</p>
+      </div>
+
+      <h4 class="activity-title">1.2.10 Seminar on Braille Script</h4>
+      <div class="activity">
+        <img src="https://placehold.co/600x350?text=Braille+Seminar+Photo" alt="Braille seminar photo">
+        <p class="description">[EDIT: describe what you learned about Braille and inclusive education.]</p>
+      </div>
+
+      <h4 class="activity-title">1.2.11 Seminar on Women's Safety</h4>
+      <div class="activity">
+        <div class="img-row">
+          <img src="https://placehold.co/280x200?text=Womens+Safety+Photo+1" alt="women's safety photo">
+          <img src="https://placehold.co/280x200?text=Womens+Safety+Photo+2" alt="women's safety photo">
+        </div>
+        <p class="description">[EDIT: describe what you learned in this seminar.]</p>
+      </div>
+    </section>
+
+    <!-- ===================== SEMESTER 2 ===================== -->
+    <section id="sem2">
+      <h2 class="section-title">2. Semester II</h2>
+
+      <h3 id="sem2-curriculum" class="subsection-title">2.1 Curriculum</h3>
+
+      <h4 class="activity-title">2.1.1 Seminars</h4>
+      <div class="activity">
+        <div class="img-row">
+          <img src="https://placehold.co/280x200?text=Seminar+Photo+1" alt="seminar photo">
+          <img src="https://placehold.co/280x200?text=Seminar+Photo+2" alt="seminar photo">
+          <img src="https://placehold.co/280x200?text=Seminar+Photo+3" alt="seminar photo">
+        </div>
+        <p class="caption">[EDIT: seminar titles, e.g. Sociology / Pedagogy seminars]</p>
+        <p class="description">[EDIT: describe these seminars.]</p>
+      </div>
+
+      <h4 class="activity-title">2.1.2 Teaching Learning Materials — Subject 1</h4>
+      <div class="activity">
+        <div class="img-row">
+          <img src="https://placehold.co/220x160?text=TLM+1" alt="TLM photo">
+          <img src="https://placehold.co/220x160?text=TLM+2" alt="TLM photo">
+          <img src="https://placehold.co/220x160?text=TLM+3" alt="TLM photo">
+          <img src="https://placehold.co/220x160?text=TLM+4" alt="TLM photo">
+        </div>
+        <p class="description">[EDIT: describe the teaching learning materials you created for this subject.]</p>
+      </div>
+
+      <h4 class="activity-title">2.1.3 Teaching Learning Materials — Subject 2</h4>
+      <div class="activity">
+        <div class="img-row">
+          <img src="https://placehold.co/220x160?text=TLM+1" alt="TLM photo">
+          <img src="https://placehold.co/220x160?text=TLM+2" alt="TLM photo">
+          <img src="https://placehold.co/220x160?text=TLM+3" alt="TLM photo">
+          <img src="https://placehold.co/220x160?text=TLM+4" alt="TLM photo">
+        </div>
+        <p class="description">[EDIT: describe the teaching learning materials for this subject.]</p>
+      </div>
+
+      <h4 class="activity-title">2.1.4 Art in Education</h4>
+      <div class="activity">
+        <div class="img-row">
+          <img src="https://placehold.co/220x160?text=Art+1" alt="art photo">
+          <img src="https://placehold.co/220x160?text=Art+2" alt="art photo">
+          <img src="https://placehold.co/220x160?text=Art+3" alt="art photo">
+          <img src="https://placehold.co/220x160?text=Art+4" alt="art photo">
+        </div>
+        <p class="description">[EDIT: describe the art-based teaching aids you made.]</p>
+      </div>
+
+      <h4 class="activity-title">2.1.5 Internship (Semester 2)</h4>
+      <div class="activity">
+        <img src="https://placehold.co/600x350?text=Internship+Photo" alt="internship photo">
+        <p class="caption">Internship</p>
+        <p class="description">[EDIT: describe your internship experience this semester.]</p>
+      </div>
+
+      <h3 id="sem2-cocurricular" class="subsection-title">2.2 Co-curricular Activities</h3>
+
+      <h4 class="activity-title">2.2.1 Youth Convention / Conference</h4>
+      <div class="activity">
+        <div class="img-row">
+          <img src="https://placehold.co/280x200?text=Conference+Photo+1" alt="conference photo">
+          <img src="https://placehold.co/280x200?text=Conference+Photo+2" alt="conference photo">
+        </div>
+        <p class="description">[EDIT: describe the conference and key takeaways.]</p>
+      </div>
+
+      <h4 class="activity-title">2.2.2 Science Day</h4>
+      <div class="activity">
+        <img src="https://placehold.co/600x350?text=Science+Day+Photo" alt="science day photo">
+        <p class="caption">[EDIT: model / project title]</p>
+        <p class="description">[EDIT: describe your role as organizer/participant.]</p>
+      </div>
+
+      <h4 class="activity-title">2.2.3 Conference on Mental Health</h4>
+      <div class="activity">
+        <div class="img-row">
+          <img src="https://placehold.co/280x200?text=Conference+Photo+1" alt="conference photo">
+          <img src="https://placehold.co/280x200?text=Conference+Photo+2" alt="conference photo">
+        </div>
+        <p class="description">[EDIT: describe what you learned about mental well-being.]</p>
+      </div>
+
+      <h4 class="activity-title">2.2.4 Volunteering Awareness</h4>
+      <div class="activity">
+        <div class="img-row">
+          <img src="https://placehold.co/280x200?text=Volunteering+Photo+1" alt="volunteering photo">
+          <img src="https://placehold.co/280x200?text=Volunteering+Photo+2" alt="volunteering photo">
+        </div>
+        <p class="description">[EDIT: describe the awareness session on volunteering.]</p>
+      </div>
+
+      <h4 class="activity-title">2.2.5 Yoga Day</h4>
+      <div class="activity">
+        <img src="https://placehold.co/600x350?text=Yoga+Day+Photo" alt="yoga day photo">
+        <p class="caption">Practicing basic yoga asanas</p>
+        <p class="description">[EDIT: describe your Yoga Day experience.]</p>
+      </div>
+
+      <h4 class="activity-title">2.2.6 Traditional / Folk Art Activity</h4>
+      <div class="activity">
+        <div class="img-row">
+          <img src="https://placehold.co/280x200?text=Art+Activity+Photo+1" alt="art activity photo">
+          <img src="https://placehold.co/280x200?text=Art+Activity+Photo+2" alt="art activity photo">
+        </div>
+        <p class="description">[EDIT: describe this traditional art activity.]</p>
+      </div>
+
+      <h4 class="activity-title">2.2.7 Demonstration on Practical Aspects</h4>
+      <div class="activity">
+        <img src="https://placehold.co/600x350?text=Demonstration+Photo" alt="demonstration photo">
+        <p class="description">[EDIT: describe the practical demonstration session.]</p>
+      </div>
+
+      <h4 class="activity-title">2.2.8 Heritage / Values Program</h4>
+      <div class="activity">
+        <div class="img-row">
+          <img src="https://placehold.co/280x200?text=Program+Photo+1" alt="program photo">
+          <img src="https://placehold.co/280x200?text=Program+Photo+2" alt="program photo">
+        </div>
+        <p class="description">[EDIT: describe your role in organizing this program.]</p>
+      </div>
+
+      <h4 class="activity-title">2.2.9 Art Exhibition</h4>
+      <div class="activity">
+        <img src="https://placehold.co/600x350?text=Art+Exhibition+Photo" alt="art exhibition photo">
+        <p class="caption">[EDIT: theme of the exhibition]</p>
+        <p class="description">[EDIT: describe what you exhibited and your experience.]</p>
+      </div>
+    </section>
+
+    <!-- ===================== SEMESTER 3 ===================== -->
+    <section id="sem3">
+      <h2 class="section-title">3. Semester III</h2>
+
+      <h3 id="sem3-curriculum" class="subsection-title">3.1 Curriculum</h3>
+
+      <h4 class="activity-title">3.1.1 AI / EdTech Class Experience</h4>
+      <div class="activity">
+        <img src="https://placehold.co/600x350?text=AI+Class+Photo" alt="AI class photo">
+        <p class="description">[EDIT: describe your experience exploring AI / EdTech tools.]</p>
+      </div>
+
+      <h4 class="activity-title">3.1.2 IKS Seminar</h4>
+      <div class="activity">
+        <img src="https://placehold.co/600x350?text=IKS+Seminar+Photo" alt="IKS seminar photo">
+        <p class="description">[EDIT: describe your seminar on Indian Knowledge Systems.]</p>
+      </div>
+
+      <h4 class="activity-title">3.1.3 Whole Child Development Workshop</h4>
+      <div class="activity">
+        <img src="https://placehold.co/600x350?text=Workshop+Photo" alt="workshop photo">
+        <p class="description">[EDIT: describe what you learned about holistic child development.]</p>
+      </div>
+
+      <h4 class="activity-title">3.1.4 Case Study</h4>
+      <div class="activity">
+        <img src="https://placehold.co/600x350?text=Case+Study+Photo" alt="case study photo">
+        <p class="description">[EDIT: describe your case study of a student.]</p>
+      </div>
+
+      <h4 class="activity-title">3.1.5 Internship</h4>
+      <div class="activity">
+        <img src="https://placehold.co/600x350?text=Internship+Photo" alt="internship photo">
+        <p class="description">[EDIT: describe your internship experience this semester.]</p>
+      </div>
+
+      <h4 class="activity-title">3.1.6 ICT Integration</h4>
+      <div class="activity">
+        <img src="https://placehold.co/600x350?text=ICT+Integration+Photo" alt="ICT integration photo">
+        <p class="caption">ICT integration in my lessons</p>
+        <p class="description">[EDIT: describe how you used digital tools in your lessons.]</p>
+      </div>
+
+      <h4 class="activity-title">3.1.7 Whole Child Development Activities</h4>
+      <div class="activity">
+        <div class="img-row">
+          <img src="https://placehold.co/200x150?text=Activity+1" alt="activity photo">
+          <img src="https://placehold.co/200x150?text=Activity+2" alt="activity photo">
+          <img src="https://placehold.co/200x150?text=Activity+3" alt="activity photo">
+          <img src="https://placehold.co/200x150?text=Activity+4" alt="activity photo">
+          <img src="https://placehold.co/200x150?text=Activity+5" alt="activity photo">
+          <img src="https://placehold.co/200x150?text=Activity+6" alt="activity photo">
+        </div>
+        <p class="description">[EDIT: list / describe the various activities, e.g. circle time, thematic assembly, etc.]</p>
+      </div>
+
+      <h3 id="sem3-cocurricular" class="subsection-title">3.2 Co-curricular Activities</h3>
+
+      <h4 class="activity-title">3.2.1 Three Language Workshop</h4>
+      <div class="activity">
+        <img src="https://placehold.co/600x350?text=Workshop+Photo" alt="workshop photo">
+        <p class="description">[EDIT: describe the three language workshop role play.]</p>
+      </div>
+
+      <h4 class="activity-title">3.2.2 Plantation Day</h4>
+      <div class="activity">
+        <img src="https://placehold.co/600x350?text=Plantation+Day+Photo" alt="plantation day photo">
+        <p class="description">[EDIT: describe your participation in Plantation Day.]</p>
+      </div>
+
+      <h4 class="activity-title">3.2.3 Cultural Celebration</h4>
+      <div class="activity">
+        <img src="https://placehold.co/600x350?text=Cultural+Celebration+Photo" alt="cultural celebration photo">
+        <p class="description">[EDIT: describe the cultural festival you took part in.]</p>
+      </div>
+
+      <h4 class="activity-title">3.2.4 Isha Foundation</h4>
+      <div class="activity">
+        <div class="img-row">
+          <img src="https://placehold.co/280x200?text=Session+Photo+1" alt="session photo">
+          <img src="https://placehold.co/280x200?text=Session+Photo+2" alt="session photo">
+        </div>
+        <p class="description">[EDIT: describe the Hatha Yoga / meditation session.]</p>
+      </div>
+
+      <h4 class="activity-title">3.2.5 Health Awareness Session</h4>
+      <div class="activity">
+        <div class="img-row">
+          <img src="https://placehold.co/280x200?text=Session+Photo+1" alt="session photo">
+          <img src="https://placehold.co/280x200?text=Session+Photo+2" alt="session photo">
+        </div>
+        <p class="description">[EDIT: describe the awareness session.]</p>
+      </div>
+
+      <h4 class="activity-title">3.2.6 Heritage / Values Program</h4>
+      <div class="activity">
+        <img src="https://placehold.co/600x350?text=Program+Photo" alt="program photo">
+        <p class="description">[EDIT: describe the program — skits, songs, dance, etc.]</p>
+      </div>
+
+      <h4 class="activity-title">3.2.7 Freshers' Day</h4>
+      <div class="activity">
+        <img src="https://placehold.co/600x350?text=Freshers+Day+Photo" alt="freshers day photo">
+        <p class="description">[EDIT: describe organizing the freshers' day event.]</p>
+      </div>
+
+      <h4 class="activity-title">3.2.8 Values / Spiritual Day</h4>
+      <div class="activity">
+        <img src="https://placehold.co/600x350?text=Values+Day+Photo" alt="values day photo">
+        <p class="description">[EDIT: describe what this event focused on.]</p>
+      </div>
+
+      <h4 class="activity-title">3.2.9 Anti-Ragging Awareness</h4>
+      <div class="activity">
+        <img src="https://placehold.co/600x350?text=Awareness+Photo" alt="awareness photo">
+        <p class="description">[EDIT: describe what you learned in this awareness program.]</p>
+      </div>
+
+      <h4 class="activity-title">3.2.10 Workshop on AI Tools in Education</h4>
+      <div class="activity">
+        <img src="https://placehold.co/600x350?text=AI+Workshop+Photo" alt="AI workshop photo">
+        <p class="description">[EDIT: describe the AI tools you explored for teaching.]</p>
+      </div>
+
+      <h4 class="activity-title">3.2.11 Women Teachers' Day</h4>
+      <div class="activity">
+        <img src="https://placehold.co/600x350?text=Teachers+Day+Photo" alt="teachers day photo">
+        <p class="description">[EDIT: describe the celebration and its significance.]</p>
+      </div>
+    </section>
+
+    <!-- ===================== SEMESTER 4 ===================== -->
+    <section id="sem4">
+      <h2 class="section-title">4. Semester IV</h2>
+
+      <h3 id="sem4-curriculum" class="subsection-title">4.1 Curriculum</h3>
+
+      <h4 class="activity-title">4.1.1 Seminars</h4>
+      <div class="activity">
+        <img src="https://placehold.co/600x350?text=Seminar+Photo" alt="seminar photo">
+        <p class="caption">[EDIT: seminar title, e.g. Health and well-being]</p>
+        <p class="description">[EDIT: describe the seminar.]</p>
+      </div>
+
+      <h4 class="activity-title">4.1.2 CCE / Feedback Collection</h4>
+      <div class="activity">
+        <img src="https://placehold.co/600x350?text=Feedback+Collection+Photo" alt="feedback collection photo">
+        <p class="description">[EDIT: describe the process of collecting student feedback.]</p>
+      </div>
+
+      <h4 class="activity-title">4.1.3 Science Day</h4>
+      <div class="activity">
+        <img src="https://placehold.co/600x350?text=Science+Day+Photo" alt="science day photo">
+        <p class="description">[EDIT: describe the Science Day celebration during your internship.]</p>
+      </div>
+
+      <h3 id="sem4-cocurricular" class="subsection-title">4.2 Co-curricular Activities</h3>
+
+      <h4 class="activity-title">4.2.1 Earth Day</h4>
+      <div class="activity">
+        <img src="https://placehold.co/600x350?text=Earth+Day+Photo" alt="earth day photo">
+        <p class="description">[EDIT: describe your poster / rally for Earth Day.]</p>
+      </div>
+
+      <h4 class="activity-title">4.2.2 Arts and Teaching Aids Exhibition</h4>
+      <div class="activity">
+        <img src="https://placehold.co/600x350?text=Exhibition+Photo" alt="exhibition photo">
+        <p class="description">[EDIT: describe the exhibition you attended.]</p>
+      </div>
+
+      <h4 class="activity-title">4.2.3 Workshop on Sustainability and Craft</h4>
+      <div class="activity">
+        <img src="https://placehold.co/600x350?text=Sustainability+Workshop+Photo" alt="sustainability workshop photo">
+        <p class="description">[EDIT: describe the craft / eco-friendly activities you took part in.]</p>
+      </div>
+
+      <h4 class="activity-title">4.2.4 Best from Waste</h4>
+      <div class="activity">
+        <img src="https://placehold.co/600x350?text=Best+From+Waste+Photo" alt="best from waste photo">
+        <p class="description">[EDIT: describe what you made from waste materials.]</p>
+      </div>
+
+      <h4 class="activity-title">4.2.5 Personality Development Program</h4>
+      <div class="activity">
+        <img src="https://placehold.co/600x350?text=Personality+Development+Photo" alt="personality development photo">
+        <p class="description">[EDIT: describe what you learned about personality development.]</p>
+      </div>
+
+      <h4 class="activity-title">4.2.6 Craft Activity</h4>
+      <div class="activity">
+        <div class="img-row">
+          <img src="https://placehold.co/280x200?text=Craft+Photo+1" alt="craft photo">
+          <img src="https://placehold.co/280x200?text=Craft+Photo+2" alt="craft photo">
+        </div>
+        <p class="description">[EDIT: describe the craft activity you learned.]</p>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<footer>
+  <!-- EDIT: footer text -->
+  Swetha's B.Ed E-Portfolio &middot; Built with care
+</footer>
+
+</body>
+</html>
